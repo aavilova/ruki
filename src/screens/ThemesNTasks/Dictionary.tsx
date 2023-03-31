@@ -6,7 +6,6 @@ import AchievementList from '../../components/AchievementList';
 import DictionaryList from '../../components/Lession/DictionaryList';
 import ProfileCard from '../../components/ProfileCard';
 import IProfile from '../../interfaces/IProfile';
-import { getProfile, getThemeProgress } from '../../misc/Firebase';
 import styles from '../../misc/Styles';
 
 export default function Dictionary({ route, navigation }) {

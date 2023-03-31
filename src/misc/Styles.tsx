@@ -1,4 +1,5 @@
 import { Platform, StatusBar, StyleSheet } from 'react-native';
+import { color } from 'react-native-reanimated';
 
 const styles = StyleSheet.create({
     screenContainer: {
@@ -6,13 +7,29 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        backgroundColor: '#000',
     },
     textButton: {
-        borderRadius: 15,
         backgroundColor: "black",
         alignItems: "center",
-        padding: 15,
-        marginVertical: 5,
+        padding: 17,
+        height: 58,
+        marginVertical: 8,
+        borderRadius:  60,
+        borderColor: "white",
+        borderWidth: 1.5,
+        borderStyle: "dashed",
+    },
+    textButtonWhite: {
+        backgroundColor: "white",
+        alignItems: "center",
+        padding: 17,
+        height: 58,
+        marginVertical: 8,
+        borderRadius:  60,
+        borderColor: "black",
+        borderWidth: 1.5,
+        borderStyle: "dashed",
     },
     textWhiteButton: {
         borderRadius: 15,
@@ -25,13 +42,55 @@ const styles = StyleSheet.create({
     textButtonText: {
         textAlign: "center",
         color: "white",
+        fontSize: 20,
+        fontWeight: 500,
+        
     },
-    bigBlackText: {
+    textButtonTextSmall: {
+        textAlign: "center",
+        color: "white",
+        fontSize: 16,
+        fontWeight: 500,
+        
+    },
+    textButtonTextBlack: {
+        textAlign: "center",
+        color: "black",
+        fontSize: 20,
+        fontWeight: 500,
+    },
+    textButtonPrimary: {
+        backgroundColor: "#FF5029",
+        alignItems: "center",
+        padding: 17,
+        borderRadius:  60,
+        borderColor: "black",
+        borderWidth: 1.5,
+        borderStyle: "dashed",
+        width: 342,
+        height: 58,
+    },
+    buttonStart: {
+        backgroundColor: "#FF5029",
+        alignItems: "center",
+        padding: 17,
+        borderRadius:  60,
+        borderColor: "white",
+        borderWidth: 1.5,
+        borderStyle: "dashed",
+        height: 58,
+        width: 149,
+      },
+    bigText: {
+        marginLeft: 10,
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 24,
+        textTransform: "uppercase",
+        fontSize: 32,
+        width: 342,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        color: "white",
     },
     headerContainer: {
         flexDirection: "row",
@@ -47,14 +106,19 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     littleText: {
-        fontSize: 10,
+        fontSize: 16,
         textAlign: "left",
-        color: "#919191"
+        color: "#fff",
+        marginVertical: 8,
     },
     wideInput: {
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: "black",
+        width: 342,
+        height: 58,
+        color: "white",
+        borderRadius: 12,
+        borderWidth: 1.5,
+        borderStyle: "dashed",
+        borderColor: "white",
         paddingVertical: 10,
         paddingHorizontal: 15,
         marginVertical: 5,

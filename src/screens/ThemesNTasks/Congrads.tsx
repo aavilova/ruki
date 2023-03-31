@@ -13,7 +13,6 @@ import TranslateWtH from '../../components/Lession/Tasks/TranslateWtH';
 import WordTask from '../../components/Lession/Tasks/WordTask';
 import ProfileCard from '../../components/ProfileCard';
 import IProfile from '../../interfaces/IProfile';
-import { getProfile, getThemeProgress } from '../../misc/Firebase';
 import styles from '../../misc/Styles';
 
 export default function Congrads({ route, navigation }) {

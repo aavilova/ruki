@@ -3,11 +3,9 @@ import * as React from 'react';
 import styles from "../../misc/Styles";
 import { FancyTextInput } from "../../components/FancyTextInput";
 import IProfile from "../../interfaces/IProfile";
-import { getProfile, storeProfile } from "../../misc/Firebase";
 import CamIcon from "../../assets/icons/cam";
 import DocumentPicker from "react-native-document-picker";
 import PicSelect from "../../components/PicSelect";
-import firebase from "firebase/compat/app";
 import { useToast } from "react-native-toast-notifications";
 import { storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
 

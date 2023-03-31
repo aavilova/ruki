@@ -1,15 +1,55 @@
 {
+    "cli": {
+        "version": ">= 0.49.0"
+    },
     "build": {
-      "development": {
-        "developmentClient": true,
-        "distribution": "internal",
-        "ios": {
-            "simulator": true
+      "base": {
+        "env": {
+          "EXAMPLE_ENV": "example value"
         },
+        "android": {
+          "image": "ubuntu-18.04-android-30-ndk-r19c",
+          "ndk": "21.4.7075529"
+        },
+        "ios": {
+          "image": "latest",
+          "node": "19.8.1",
+          "yarn": "1.22.5"
+        }
       },
-      "preview": {
-        "distribution": "internal"
+      "development": {
+        "extends": "base",
+        "env": {
+          "ENVIRONMENT": "staging"
+        },
+        "android": {
+          "distribution": "internal",
+          "withoutCredentials": true,
+          "gradleCommand": ":app:assembleDebug"
+        },
+        "ios": {
+          "simulator": true,
+          "buildConfiguration": "Debug"
+        }
       },
-      "production": {}
+      "staging": {
+        "extends": "base",
+        "env": {
+          "ENVIRONMENT": "staging"
+        },
+        "distribution": "internal",
+        "android": {
+          "gradleCommand": ":app:assembleRelease"
+        }
+      },
+      "production": {
+        "extends": "base",
+        "env": {
+          "ENVIRONMENT": "production"
+        }
+      }
+    },
+    "submit": {
+        "production": {}
     }
-  }
+}

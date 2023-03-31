@@ -7,43 +7,35 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import List from "../components/List";
-import SearchBar from "../components/SearchBar";
 import styles from "../misc/Styles";
-import { getAllThemes } from "../misc/TasksAndLessions";
 
 export default function Browse({ route, navigation }) {
-  const [searchPhrase, setSearchPhrase] = useState("");
-  const [clicked, setClicked] = useState(false);
-  const [data, setData] = useState();
+  const [themes, setThemes] = useState<Theme[]>([]);
 
-  const isFocused = useIsFocused();
+  const fetchThemes = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/themes');
+      const data = await response.json();
+      setThemes(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
-    getAllThemes().then((response) => {
-      setData(response)
-      console.log(response)
-    })
-  }, [isFocused]);
+    fetchThemes();
+  }, []);
 
   return (
-    <SafeAreaView style={[styles.screenContainer]}>
-      <SearchBar
-        searchPhrase={searchPhrase}
-        setSearchPhrase={setSearchPhrase}
-        clicked={clicked}
-        setClicked={setClicked}
-      />
+    <ScrollView>
+      <SafeAreaView style={[styles.screenContainer]}>
       {(
-
-        <List
-          searchPhrase={searchPhrase}
-          data={data}
-          setClicked={setClicked} 
-          navigation={navigation}/>
-
+        <List/>
       )}
     </SafeAreaView>
+    </ScrollView>
   );
 };
 

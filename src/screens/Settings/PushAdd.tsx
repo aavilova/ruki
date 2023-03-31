@@ -3,7 +3,6 @@ import * as React from 'react';
 import styles from "../../misc/Styles";
 import { FancyTextInput } from "../../components/FancyTextInput";
 import IProfile from "../../interfaces/IProfile";
-import { getProfile, storeProfile } from "../../misc/Firebase";
 
 export default function PushAdd({ route, navigation }) {
     const [user, setUser] = React.useState<IProfile | null>(null)

@@ -1,8 +1,6 @@
 import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import * as React from 'react';
-import { signInWithPopup } from "firebase/auth";
 import LoginPic from "../../assets/pics/login";
-import { getPopUpSign } from "../../misc/Firebase";
 import styles from "../../misc/Styles";
 
 export default function Register({ route, navigation }) {
@@ -14,9 +12,6 @@ export default function Register({ route, navigation }) {
 
             </View>
             <View style={{ flex: 1, marginHorizontal: 30, justifyContent: "flex-end", display: "flex" }}>
-                <View style={[{ flex: 1, justifyContent: "center", alignItems:"center" }]}>
-                    <LoginPic height={"100%"} />
-                </View>
                 <View>
                     <Text style={[styles.bigBlackText, { textAlign: "left", marginVertical: 30 }]}>
                         Регистрация
@@ -34,7 +29,7 @@ export default function Register({ route, navigation }) {
                         onPress={() => {
                             getPopUpSign()
                         }}>
-                        <Text style={[styles.textButtonText]}>
+                        <Text style={[styles.Small, {textAlign: "center"}]}>
                             Через Google аккаунт
                         </Text>
                     </TouchableOpacity>

@@ -4,8 +4,6 @@ import LoginPic from "../assets/pics/login";
 import styles from "../misc/Styles";
 import { storeAsyncStorageLoginPass } from "../misc/AsyncStorage";
 import { useState } from "react";
-import { auth } from "../misc/Firebase";
-import { deleteUser } from "firebase/auth";
 
 export default function Settings({ route, navigation }) {
     // const { options } = route.params
@@ -15,7 +13,7 @@ export default function Settings({ route, navigation }) {
     return (
         <SafeAreaView style={styles.screenContainer}>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>
+                <Text style={[styles.headerText, {color: "white"}]}>
                     Настройки
                 </Text>
             </View>

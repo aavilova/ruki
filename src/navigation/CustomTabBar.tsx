@@ -6,7 +6,7 @@ import ProfileIcon from '../assets/icons/profile';
 
 export function IconTabs({ state, descriptors, navigation }) {
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View style={{ flexDirection: 'row', backgroundColor: "black", marginBottom: -2,height: 104, borderRadius:  32, borderColor: "white", borderWidth: 1.5, borderStyle: "dashed", }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -45,7 +45,7 @@ export function IconTabs({ state, descriptors, navigation }) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1, alignItems: "center", opacity: (isFocused? 1: 0.3), margin:10}}
+            style={{ flex: 1, alignItems: "center", opacity: (isFocused? 1: 0.3), marginTop:24}}
           >
             {label === "Home" && <HomeIcon />}
             {label === "Browse" && <BookIcon />}

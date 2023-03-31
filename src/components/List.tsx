@@ -1,4 +1,4 @@
-// List.js
+
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
@@ -9,112 +9,57 @@ import {
   SafeAreaView,
   TouchableOpacity
 } from "react-native";
-import ConfirmIcon from "../assets/icons/confirm";
-import { getThemeProgress } from "../misc/Firebase";
 
-// definition of the Item, which will be rendered in the FlatList
-const Item = ({ theme, done, navigation }) => (
-  <TouchableOpacity style={{
-    marginVertical: 10,
-    marginHorizontal: 20,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#f0f2f0',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderRadius: 20,
-    paddingHorizontal: 20
-  }}
-    onPress={() => {
-      // const navigation = useNavigation()
-      navigation.navigate("Dictionary", { options: { theme: theme } })
-    }}
-  >
-    <View style={{
+interface Theme {
+  id: number;
+  name: string;
+}
 
-      flex: 1,
-      aspectRatio: 3 / 1,
+const ThemesList = () => {
+  const [themes, setThemes] = useState<Theme[]>([]);
 
-      // padding: 10,
-      justifyContent: 'space-around',
-      // paddingLeft:10,
-    }}>
-      <Text style={styles.header}>{theme.name}</Text>
-      <Text style={styles.details}>{theme.description}</Text>
-    </View>
-    <View>
-      <View style={{
-        position: "relative",
-        height: "40%",
-        aspectRatio: 1,
-        borderColor: "black",
-        borderRadius: 50,
-        borderWidth: 1,
-        backgroundColor: done ? "black" : "transparent",
-        justifyContent: "center",
-        marginRight: 10,
-      }}>
-        {done && <ConfirmIcon height={"50%"} width={"50%"} alignSelf={"center"} />}
-      </View>
-    </View>
-  </TouchableOpacity >
-);
-
-const List = ({ searchPhrase, setClicked, data, navigation }) => {
-  const [dones, setDones] = useState(Array(data?.length).fill(false))
+  const fetchThemes = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/v1/themes');
+      const data = await response.json();
+      setThemes(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
-    if (data) {
-      getThemeProgress().then((response) => {
-        let dones = Array(data.length).fill(false)
-        for (let i = 0; i < response.data.length; i++) {
-          if (response.data[i].progress === response.data[i].length) {
-            let b = data.findIndex((item) => item.id === response.data[i].id)
-            console.log(b)
-            if (b >= 0) {
-              dones[b] = true
-            }
-          }
-        }
-        console.log(dones)
-        setDones(dones)
-      })
-    }
-  }, [data])
-
-  // const renderItem = (
+    fetchThemes();
+  }, []);
 
   return (
-    <View style={styles.list__container}>
-      <FlatList
-        data={data}
-        renderItem={({ item, index }) => {
-          // console.log(item)
-          if (searchPhrase === "") {
-            return <Item theme={item} done={dones[index]} navigation={navigation} />;
-          }
-          if (item.name.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-            return <Item theme={item} done={dones[index]} navigation={navigation} />;
-          }
-          if (item.description.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-            return <Item theme={item} done={dones[index]} navigation={navigation} />;
-          }
-        }
-        }
-        keyExtractor={(item) => item.id}
-      />
+    <View style={{ flex: 1, alignItems: "center"}}>
+      {themes.map((theme) => (
+        <TouchableOpacity style={{
+              marginVertical: 8,
+              marginHorizontal: 24,
+              backgroundColor: 'white',
+              borderRadius: 32
+            }}
+              onPress={() => {
+                const navigation = useNavigation()
+                navigation.navigate(" ", { options: { theme: theme } })
+              }}
+            >
+            <View style={{ paddingVertical: 16, paddingHorizontal: 24, borderRadius: 32, width: 342, display: "flex", justifyContent: "space-between", flexDirection: "row"}}>
+              <Text style={[styles.details, {width: 240}]} key={theme.id}>{theme.name}</Text>
+              <Text style={styles.details}>0/5</Text>
+            </View>
+        </TouchableOpacity >
+      ))}
     </View>
   );
 };
 
-export default List;
+export default ThemesList;
 
 const styles = StyleSheet.create({
   list__container: {
-    // backgroundColor:"red",
-    // margin: 10,
-    // height: "100%",
-    // width: "100%",
     marginBottom: 80,
   },
 
@@ -124,7 +69,7 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
   details: {
-    fontSize: 15,
+    fontSize: 24,
   },
   header: {
     fontSize: 30,

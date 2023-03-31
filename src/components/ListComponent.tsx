@@ -18,18 +18,22 @@ const ListComponent = ({ header, details }: { header: string, details: string })
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
     // alignItems: 'center',
     // justifyContent: 'space-between',
     paddingVertical:15,
     paddingHorizontal:5,
     margin:5,
-    backgroundColor: '#f0f2f0',
-    aspectRatio: 16 / 11,
+    width: 165,
+    height: 165,
+    backgroundColor: 'white',
+    // aspectRatio: 16 / 11,
     borderRadius: 20,
     maxWidth: Dimensions.get("window").width / 2 - 30,
     // padding: 10,
     // justifyContent: 'space-around',
+    borderWidth: 1.5,
+    borderColor: "black",
+    borderStyle: "dashed",
     paddingLeft: 10,
   },
   fixedRatio: {
@@ -37,9 +41,9 @@ const styles = StyleSheet.create({
   },
   header: {
     // font: 'sans-serif',
-    fontSize: 15,
-    alignSelf:"flex-start"
-    // fontWeight: 'bold'
+    fontSize: 22,
+    alignSelf:"flex-start",
+    fontWeight: 500,
   },
   details: {
     // font: 'sans-serif',

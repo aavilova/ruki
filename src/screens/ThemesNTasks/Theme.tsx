@@ -6,9 +6,7 @@ import SettingsIcon from '../../assets/icons/settings';
 import AchievementList from '../../components/AchievementList';
 import ProfileCard from '../../components/ProfileCard';
 import IProfile from '../../interfaces/IProfile';
-import { getProfile, getThemeProgress, storeLastVisitedTheme } from '../../misc/Firebase';
 import styles from '../../misc/Styles';
-import { getTaskById } from '../../misc/TasksAndLessions';
 import getRandomID from '../../misc/UUIDGenerator';
 
 export default function Theme({ route, navigation }) {
