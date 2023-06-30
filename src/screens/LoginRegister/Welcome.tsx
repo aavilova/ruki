@@ -41,7 +41,7 @@ export default function Welcome({ route, navigation }) {
                     }}
                 >
                     <Text style={styles.textButtonText}>
-                        Войти
+                        войти
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.textButton, { marginHorizontal: 20, marginBottom: 40, }]}
@@ -50,7 +50,7 @@ export default function Welcome({ route, navigation }) {
                     }}
                 >
                     <Text style={styles.textButtonText}>
-                        Зарегистрироваться
+                        зарегистрироваться
                     </Text>
                 </TouchableOpacity>
             </View>}

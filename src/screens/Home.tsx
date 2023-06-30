@@ -9,6 +9,8 @@ import GlobalIcon from "../assets/pics/global";
 import StartPic from '../assets/pics/main';
 import MeetPic from '../assets/pics/meet';
 import AdvPic from '../assets/pics/adv';
+import RepPic from '../assets/pics/repeat';
+import AllPic from '../assets/pics/lessons';
 import LoginPic from '../assets/pics/login';
 import WorkIcon from '../assets/pics/work';
 import ListComponent from '../components/ListComponent';
@@ -42,31 +44,22 @@ export default function Home({ route, navigation }) {
 
   return (
     <ScrollView>
-      <SafeAreaView style={[styles.screenContainer, { marginHorizontal: 20 }]}>
-          <View style={styless.container}>
-            <View style={styless.fixedRatio}>
-              <Text style={styless.counter}>{theme?.name}</Text>
-              <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}>
-                {/* <GlobalIcon height={"100%"} width={'100%'} alignSelf={"center"} /> */}
-                {(theme?.id % 4 == 0 || !theme) && <StartPic height={"280%"} width={'280%'} alignSelf={"center"} />}
-                {(theme?.id % 4 == 1) && <WorkIcon height={"100%"} width={'100%'} alignSelf={"center"} />}
-                {(theme?.id % 4 == 2) && <LoginPic height={"100%"} width={'100%'} alignSelf={"center"} />}
-                {(theme?.id % 4 == 3) && <GlobalIcon height={"100%"} width={'100%'} alignSelf={"center"} />}
-              </View>
-
-              <View style={[{ marginTop: -40, flex: 1, justifyContent: "center", alignItems: "center"}]}>
-                <Text style={[styles.textButtonText, { color: "black", marginBottom: 4}]}>10 жестов 3 мин.</Text>
-                <Text style={[styles.textButtonText, { color: "black", fontSize: 44, marginBottom: 24,}]}>ПОВТОРЕНИЕ</Text>
-                <TouchableOpacity style={[styles.buttonStart,{marginHorizontal:10,marginBottom:10,}]} onPress={() => {
-                  navigation.navigate("Dictionary", { options: { theme: theme} })
-                }}>
-                  <Text style={styles.textButtonText}>Начать</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+      <SafeAreaView style={styles.screenContainer}>
+          <View style={[styless.container, { marginHorizontal: 20, marginTop: 25, borderRadius: 40, height: 252, width: 'auto' }]}>
+            <RepPic height={"100%"} width={'100%'} alignSelf={"center"} />
           </View>
 
-          <View style={[{ marginTop: 60}]}>
+          <View style={[styless.container, { marginLeft: 20, marginTop: 50, backgroundColor: "#F2F2F5", marginTop: 25, height: 1100, width: 'auto' }]}>
+            <AllPic height={"100%"} width={'100%'} alignSelf={"center"} />
+          </View>
+
+          <TouchableOpacity style={[styles.textButtonWhite,{marginHorizontal:10, marginBottom:10, backgroundColor: "white"}]} onPress={() => {
+            navigation.navigate("Dictionary", { options: { theme: theme} })
+          }}>
+            <Text style={styles.textButtonTextBlack}>показать еще</Text>
+          </TouchableOpacity>
+
+          <View style={[{ marginTop: 60, display: "none"}]}>
             <Text style={styless.header}>Знакомство</Text>
             <Text style={styless.title}>Продолжить обучение</Text>
             <FlatList style={styless.list}
@@ -80,11 +73,8 @@ export default function Home({ route, navigation }) {
             />
         </View>
 
-        <View>
-          <MeetPic width={'100%'}></MeetPic>
-        </View>
 
-        <View>
+        <View style={[{ marginTop: 60, display: "none"}]}>
           <Text style={styless.header}>Следующие темы</Text>
           <FlatList style={styless.list}
               showsVerticalScrollIndicator={false}
@@ -94,18 +84,8 @@ export default function Home({ route, navigation }) {
               renderItem={({ item }) => <ListComponent header={item.name} />}
               keyExtractor={(item) => item.id}
             />
+        </View> 
 
-
-          <TouchableOpacity style={[styles.textButtonWhite,{marginHorizontal:10,marginBottom:10,}]} onPress={() => {
-            navigation.navigate("Dictionary", { options: { theme: theme} })
-          }}>
-            <Text style={styles.textButtonTextBlack}>Показать еще</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-          <AdvPic width={'100%'}></AdvPic>
-        </View>
       </SafeAreaView>
     </ScrollView>
     
@@ -115,10 +95,21 @@ export default function Home({ route, navigation }) {
 
 
 const styless = StyleSheet.create({
+
+  screenContainer: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    // justifyContent: 'center',
+    // alignItems: "center",
+    // alignContent: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    backgroundColor: '#F2F2F5',
+},
   container: {
     flex: 0,
-    flexDirection: 'column',
-    backgroundColor: 'black',
+    flexDirection: '#F2F2F5',
+    backgroundColor: 'transparent',
     justifyContent: 'space-around',
     maxWidth:Dimensions.get("window").width - 40,
     minWidth:Dimensions.get("window").width - 40,

@@ -2,11 +2,12 @@ import * as React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import BookIcon from '../assets/icons/book';
 import HomeIcon from '../assets/icons/home';
-import ProfileIcon from '../assets/icons/profile';
+import EduIcon from '../assets/icons/edu';
+import SetIcon from '../assets/icons/set';
 
 export function IconTabs({ state, descriptors, navigation }) {
   return (
-    <View style={{ flexDirection: 'row', backgroundColor: "black", marginBottom: -2,height: 104, borderRadius:  32, borderColor: "white", borderWidth: 1.5, borderStyle: "dashed", }}>
+    <View style={{ flexDirection: 'row', backgroundColor: "white", marginBottom: -2,height: 104, borderRadius:  32, borderColor: "white", borderWidth: 1.5, borderStyle: "dashed", }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -48,8 +49,9 @@ export function IconTabs({ state, descriptors, navigation }) {
             style={{ flex: 1, alignItems: "center", opacity: (isFocused? 1: 0.3), marginTop:24}}
           >
             {label === "Home" && <HomeIcon />}
-            {label === "Browse" && <BookIcon />}
-            {label === "Profile" && <ProfileIcon />}
+            {label === "Dictionary" && <EduIcon />}
+            {label === "Dictionary" && <BookIcon />}
+            {label === "Settings" && <SetIcon />}
           </TouchableOpacity>
         );
       })}

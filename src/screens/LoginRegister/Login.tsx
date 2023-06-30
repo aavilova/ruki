@@ -4,7 +4,7 @@ import styles from "../../misc/Styles";
 import { TouchableOpacity } from "react-native";
 import { FancyTextInput } from "../../components/FancyTextInput";
 import { useToast } from "react-native-toast-notifications";
-import { AsyncStorage } from '@react-native-async-storage/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Login({ route, navigation }) {
 
@@ -34,40 +34,40 @@ export default function Login({ route, navigation }) {
     const [userId, setUserId] = React.useState(0)
     const [userName, setUserName] = React.useState('')
 
-    const token = useContext(AuthContext)
     const setToken = useContext(AuthContext)
     
 
-    function saveData(tok) {
+    async function saveData(tok) {
         console.log("Saving", tok)
-        _storeData = async () => {
+        _storeData = async () => {{
             try {
-                await AsyncStorage.setItem('token', tok)
-                console.log(_storeData)
-                console.log("Saved token", tok)
+              await AsyncStorage.setItem('token', tok);
+              console.log("Saved token", tok);
             } catch (error) {
-                console.log('error')
-                console.log(error) // Error saving data
+              console.log(error);
             }
-        }
+          }
+          
+          // Call the saveData function with the token
+          saveData(json.jti);
 
-        // console.log('Reading')
-        // _retrieveData = async () => {
-        //     try {
-        //         const t = await AsyncStorage.getItem('token')
-        //         if (t !== null) {
-        //             console.log("We have token", t)
-        //         }
-        //     } catch (error) {
-        //         console.log(error) // Error saving data
-        //     }
-        // }
-        // console.log('Read')
+
+          _retrieveData = async () => {
+            try {
+              const t = await AsyncStorage.getItem('token');
+              if (t !== null) {
+                console.log("Retrieved token", t);
+              }
+            } catch (error) {
+              console.log(error);
+            }
+          }
+        }  
 
     }
 
 
-    function signIn() { doSignIn() }
+    // function signIn() { doSignIn() }
     
     function signOut() { 
         setToken('')
@@ -77,36 +77,42 @@ export default function Login({ route, navigation }) {
         alert('You are successfully sign out')
     }
     
-    const doSignIn = async () => {
+
+    async function doSignIn() { // async
         try {
             const user = {'user' : {'email': email, 'password': password}}
-            const response = await fetch( 
-                apiUrl + "/v1/login",
-                {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(user)
-                }
-            )
-            let json = await response.json() // получаем тело ответа
+            // const user = {'user' : {'email': 'aalisa@gmail.com', 'password': '123456'}}
 
-            if (typeof json['token'] !== 'undefined') {
-                setUserId(json.id)
-                setUserName(json.email)
-                setToken(json.jti)
-                // saveData(json.token)
-                alert('You are successfully logged in as a user "' +
-                      json.email +'"')
-            } else if (typeof json['message'] !== 'undefined') {
-                alert(json.message)
-            } else console.log("fuck")
+            const response = await fetch(apiUrl + "/v1/login", {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+              });
+              
+              let json = await response.json();
+              console.log(json); // Log the response object for debugging
+            alert(json.jti + ' ' + json.email)
+            
+            // if (typeof json['jti'] !== 'undefined') {
+            //     setUserId(json.id)
+            //     setUserName(json.email)
+            //     setToken(json.jti)
+            //     // saveData(json.token)
+            //     alert('ccc')
+            //     alert('You are successfully logged in as a user "' +
+            //           json.email +'"')
+            // } else if (typeof json['message'] !== 'undefined') {
+            //     alert('bbb')
+            //     alert(json.message)
+            // } else console.log("...")
         } catch (error) {
+            // alert('aaa')
             alert(error)
-        } finally {}
-
+        }
+        
         //console.log(JSON.stringify( {'login': login, 'password': password} ))
         // await fetch(apiUrl + '/auth/signin',
         //     {
@@ -130,41 +136,44 @@ export default function Login({ route, navigation }) {
         // })
     }
 
+
+
+
     return <SafeAreaView style={styles.screenContainer}>
             <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "left", marginHorizontal: 30 }}>
                 <Text style={[styles.bigText, { textAlign: "center", marginBottom: 30, marginLeft:-10 }]}>
-                    Вход
+                    вход
                 </Text>
                 <Text style={styles.littleText}>
-                    Эл. почта
+                    эл. почта
                 </Text>
-                <FancyTextInput style={[styles.wideInput, { marginBottom: 20 }]} value={email} onChangeText={onChangeLogin}  />
+                <TextInput style={[styles.wideInput, { marginBottom: 20 }]} value={email} onChangeText={onChangeLogin} placeholder="Введите почту" />
 
 
                 <Text style={styles.littleText}>
-                    Пароль
+                    пароль
                 </Text>
-                <FancyTextInput style={styles.wideInput}  onChangeText={onChangePassword} />
+                <TextInput style={styles.wideInput}  onChangeText={onChangePassword} placeholder="Введите пароль" />
 
 
 
                 <TouchableOpacity style={[styles.textButtonPrimary, { marginHorizontal: 0, marginTop: 32, marginBottom: 20 }]}
-                    onPress={() => {
-                        signIn()
-
-                    }}
-                
-                >
-                    <Text style={styles.textButtonText}>
-                        Войти
+                     onPress={() => {
+                            doSignIn(),
+                            navigation.navigate("Main")
+                        }}
+                    >
+                    <Text style={styles.textButtonTextWhite}>
+                        войти
                     </Text>
 
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.textWhiteButton, { marginHorizontal: 0, marginBottom: 40, }]}>
-                    <Text style={[styles.Small, { color: "white", width: 140, marginLeft: 85,textAlign: "center" }]}>
-                        Или войдите через Google аккаунт
+                    <Text style={[styles.Small, { color: "black", width: 140, marginLeft: 85,textAlign: "center" }]}>
+                        или войдите через Google аккаунт
                     </Text>
                 </TouchableOpacity>
             </View>
     </SafeAreaView>
-}
+};
+

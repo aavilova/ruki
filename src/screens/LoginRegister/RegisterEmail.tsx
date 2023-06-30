@@ -142,63 +142,63 @@ export default function RegisterEmail({ route, navigation }) {
         <SafeAreaView style={styles.screenContainer}>
             <View style={{ flex: 1, marginHorizontal: 30, marginTop: 150, }}>
             <Text style={[styles.bigText, { textAlign: "left", marginBottom: 30, marginLeft: 50, }]}>
-                 Регистрация
+                 регистрация
             </Text>
             <Text style={styles.littleText}>
-                Имя
+                имя
             </Text>
             <TextInput
-                style={[styles.input, {width: 342,
+                style={[styles.wideInput, {width: 342,
                     height: 58,
-                    color: "white",
+                    color: "black",
                     borderRadius: 12,
                     borderWidth: 1.5,
                     borderStyle: "dashed",
-                    borderColor: "white",
+                    // borderColor: "white",
                     paddingVertical: 10,
                     paddingHorizontal: 15,
                     marginVertical: 5,}]}
                 onChangeText={onChangeLogin}
                 value={login}
-                placeholder="Enter login"
+                placeholder="Введите имя пользователя"
             />
 
             <Text style={styles.littleText}>
-                Эл. почта
+                эл. почта
             </Text>
             <TextInput
-                style={[styles.input, {width: 342,
+                style={[styles.wideInput, {width: 342,
                     height: 58,
-                    color: "white",
+                    color: "black",
                     borderRadius: 12,
                     borderWidth: 1.5,
                     borderStyle: "dashed",
-                    borderColor: "white",
+                    // borderColor: "white",
                     paddingVertical: 10,
                     paddingHorizontal: 15,
                     marginVertical: 5,}]}
                 onChangeText={onChangeEmail}
                 value={email}
-                placeholder="Enter email"
+                placeholder="Введите почту"
             />
 
             <Text style={styles.littleText}>
-                  Пароль
+                  пароль
             </Text>
             <TextInput
-                style={[styles.input, {width: 342,
+                style={[styles.wideInput, {width: 342,
                     height: 58,
-                    color: "white",
+                    color: "black",
                     borderRadius: 12,
                     borderWidth: 1.5,
                     borderStyle: "dashed",
-                    borderColor: "white",
+                    // borderColor: "white",
                     paddingVertical: 10,
                     paddingHorizontal: 15,
                     marginVertical: 5,}]}
                 onChangeText={onChangePassword1}
                 value={password1}
-                placeholder="Enter password"
+                placeholder="Введите пароль"
             />
 
                 <TouchableOpacity style={[styles.textButtonPrimary, { marginHorizontal: 0, marginTop: 32, marginBottom: 20 }]}
@@ -207,14 +207,14 @@ export default function RegisterEmail({ route, navigation }) {
                         navigation.navigate("OnBoarding")
                     }}
                 >
-                    <Text style={styles.textButtonText}>
-                        Зарегистрироваться
+                    <Text style={styles.textButtonTextWhite}>
+                        зарегистрироваться
                     </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={[styles.textWhiteButton, { marginHorizontal: 0, marginBottom: 40, }]}>
-                    <Text style={[styles.Small, { color: "white", width: 140, marginLeft: 0,textAlign: "center" }]}>
-                        Или войдите через Google аккаунт
+                    <Text style={[styles.Small, { color: "black", width: 140, marginLeft: 100,textAlign: "center" }]}>
+                        или войдите через Google аккаунт
                     </Text>
                 </TouchableOpacity>
 

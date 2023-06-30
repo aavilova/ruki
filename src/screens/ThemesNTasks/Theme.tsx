@@ -2,7 +2,7 @@ import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import SettingsIcon from '../../assets/icons/settings';
+import SettingsIcon from '../../assets/icons/set';
 import AchievementList from '../../components/AchievementList';
 import ProfileCard from '../../components/ProfileCard';
 import IProfile from '../../interfaces/IProfile';

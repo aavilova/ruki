@@ -1,7 +1,7 @@
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import SettingsIcon from '../../assets/icons/settings';
+import SettingsIcon from '../../assets/icons/set';
 import AchievementList from '../../components/AchievementList';
 import DictionaryList from '../../components/Lession/DictionaryList';
 import ProfileCard from '../../components/ProfileCard';

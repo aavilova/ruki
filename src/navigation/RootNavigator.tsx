@@ -25,7 +25,7 @@ const Stack = createStackNavigator();
 export default function RootNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown:false, cardStyle: { backgroundColor: '#000' }}}>
+      <Stack.Navigator screenOptions={{headerShown:false, cardStyle: { backgroundColor: 'white' }}}>
         <Stack.Screen name="Welcome" component={Welcome}/>
         <Stack.Screen name="Register" component={Register}/>
         <Stack.Screen name="RegisterEmail" component={RegisterEmail}/>

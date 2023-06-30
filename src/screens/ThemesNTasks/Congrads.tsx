@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, Dimensio
 import { ScrollView } from 'react-native-gesture-handler';
 import ConfirmIcon from '../../assets/icons/confirm';
 import ExitIcon from '../../assets/icons/exit';
-import SettingsIcon from '../../assets/icons/settings';
+import SettingsIcon from '../../assets/icons/set';
 import AchievementList from '../../components/AchievementList';
 import ProgressBar from '../../components/Lession/ProgressBar';
 import PairTask from '../../components/Lession/Tasks/PairTask';
